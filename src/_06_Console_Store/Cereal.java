@@ -13,11 +13,15 @@ public class Cereal extends Food{
 			this.item = "cereal2.jpeg";
 		}
 	}
-
+	
 	@Override
 	public JLabel getFood() {
-		price = 3.99;
+		
 		// TODO Auto-generated method stub
 		return new JLabel(loadImage(this.item));
+	}
+	public static double price() {
+		
+		return 2.99;
 	}
 }

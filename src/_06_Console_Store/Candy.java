@@ -16,8 +16,14 @@ public class Candy extends Food{
 
 	@Override
 	public JLabel getFood() {
-		price = 0.49;
+		
 		// TODO Auto-generated method stub
 		return new JLabel(loadImage(this.item));
 	}
+
+
+public static double price() {
+	
+	return 0.49;
+}
 }

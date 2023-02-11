@@ -41,35 +41,116 @@ public class ConsoleStore {
 	public static void main(String[] args) {
 		Cart<Food> cart = new Cart<Food>();
 
-		int money = 15;
-
+		double money = 15;
+		String action;
+		do {
 		Scanner scan = new Scanner(System.in);
 
-		String buy;
+		
+		
+		System.out.println("Would you like to buy, view your cart, remove items, or pay? (buy, view, remove, pay)");
 
-		System.out.println("What would you like to buy? (candy, cereal, milk, icecream)");
+		action = scan.nextLine();
 
-		buy = scan.nextLine();
+		
+		
+		if (action.equals("buy")) {
 
-		if (buy.equals("candy")) {
+			if (money > 0) {
 
-			cart.add(new Candy());
+				String buy;
 
-		} else if (buy.equals("ceral")) {
+				System.out.println("What would you like to buy? (candy, cereal, milk, icecream)");
 
-			cart.add(new Cereal());
-			money = money -= cereal.price();
-		} else if (buy.equals("milk")) {
+				buy = scan.nextLine();
+
+				if (buy.equals("candy")) {
+					if (money >= Candy.price()) {
+						cart.add(new Candy());
+						money = money - Candy.price();
+					} else {
+						System.out.println("You do not have enough money to buy this item!");
+					}
+				} else if (buy.equals("cereal")) {
+					if (money >= Cereal.price()) {
+						cart.add(new Cereal());
+						money = money - Cereal.price();
+					} else {
+						System.out.println("You do not have enough money to buy this item!");
+					}
+				} else if (buy.equals("milk")) {
+					if (money >= Milk.price()) {
+						cart.add(new Milk());
+						money = money - Milk.price();
+					} else {
+						System.out.println("You do not have enough money to buy this item!");
+					}
+				} else if (buy.equals("icecream")) {
+					if (money >= IceCream.price()) {
+						cart.add(new IceCream());
+						money = money - IceCream.price();
+					} else {
+						System.out.println("You do not have enough money to buy this item!");
+					}
+				} else {
+
+					System.out.println("Sorry, we don't have that here!");
+				}
+
+			}
+
+			else {
+				System.out.println("You are out of money!");
+			}
+
+		}
+		
+		else if(action.equals("remove")) {
 			
-			cart.add(new Milk());
-		} else if (buy.equals("icecream")) {
+			String remove;
 			
-			cart.add(new IceCream());
-		} else {
+			System.out.println("Which item would you like to remove? (candy, cereal, milk, icecream)");
 			
-			System.out.println("Sorry, we don't have that here!");
+			remove = scan.nextLine();
+			
+			if(remove.equals("candy")) {
+				cart.remove(new Candy());
+				money = money+Candy.price();
+				
+			}
+			
+			else if(remove.equals("cereal")) {
+				cart.remove(new Cereal());
+				money = money+Cereal.price();
+			}
+			else if(remove.equals("milk")) {
+				
+				cart.remove(new Milk());
+				money = money+Milk.price();
+			}
+			else if(remove.equals("icecream")) {
+				
+				cart.remove(new IceCream());
+				money = money+IceCream.price();
+			}
+			else {
+				System.out.println("We don't sell that item here!");
+			}
+			
 		}
 
+		else if(action.equals("view")) {
+			cart.showCart();
+			
+		}
+		}
+		
+		while(action!="pay");
+	
+			
+			System.out.println("Thank you for shopping with us! Your current balance is: $"+money);
+		
+		
 	}
 
 }

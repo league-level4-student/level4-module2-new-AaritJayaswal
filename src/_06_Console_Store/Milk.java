@@ -18,9 +18,13 @@ public class Milk extends Food{
 		@Override
 		public JLabel getFood() {
 			// TODO Auto-generated method stub
-			price = 1.99;
+
 			return new JLabel(loadImage(this.item));
 		}
-	}
+		public static double price() {
+			
+			return 1.99;
+		}	
+}
 
 
